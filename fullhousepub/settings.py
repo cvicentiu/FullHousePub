@@ -1,6 +1,9 @@
 # Django settings for fullhousepub project.
 
 DEBUG = True
+
+import os.path
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/vicentiu/Documents/devel/fullhousepub/fullhousepub/data.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/home/vicentiu/Documents/devel/FullHousePub/fullhousepub/data.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -45,7 +48,8 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.normpath(os.path.dirname(__file__)) + '/resources/static'
+
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -92,4 +96,5 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
+    'fullhousepub.interface'
 )

@@ -3,7 +3,7 @@
 body{
 	padding:0;
 	margin:0;
-	background:url(images/main_bg.gif) 0 0 repeat-x #191919;
+	background:url(images/main_bg.jpg) 0 0 repeat-x #191919;
 	color:#6E6E6E;
 }
 div, h1, h2, p, form, label, input, textarea, img, span{
@@ -24,19 +24,41 @@ ul{
 
 /*------------------------------------------------body part start---------------------*/
 #body{
-	width:778px;
+	width:900px;
 	margin:0 auto;
-	background:url(images/body_bg.jpg) 0 0 no-repeat;
+/*	background:url(images/main_bg.gif) 0 0 no-repeat;*/
 	padding:0 0 0 0;
-	
+/*	border-style: dashed;/*debug*/
+/*	border-width:2px;/*debug*/	
 }
+
 #header{
-	width:778px;
+	width:900px;
+	height:350px;
 	padding:0;
-	margin:0;
+	margin:0 0 0 0;
+	border-style: dotted; /*debug*/
+	border-width:1px; /*debug*/
 }
+#logo{
+	width:150px;
+	height:250px;
+	padding:0;
+	margin:75px 0 0 0;
+	border: 1px solid blue;
+	float: left;
+}
+#slideshow{
+	width:600px;
+	height:250px;
+	padding:0;
+	margin:75px 146px 0 0; /*debug change to 100 px not 96px*/
+	float: right;
+	border: 1px solid yellow;
+}
+/* navigation list */
 #header ul{
-	width:426px;
+	width:500px;
 	height:25px;
 	padding:4px 0 0 49px;
 	margin:0 303px 0 0;
@@ -81,6 +103,9 @@ ul{
 #header img{
 	margin:200px 0 0 0;
 	float:left;
+}
+#header img.slide{
+	margin:0 0 0 0;
 }
 /*------------------------------------------------left part start---------------------*/
 #left{

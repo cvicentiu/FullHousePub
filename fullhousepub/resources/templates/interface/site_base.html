@@ -3,30 +3,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <title>{% title %}</title>
-        <link href="{{ basepath }}style/style.css" rel="stylesheet" type="text/css" />
+        <title>{{title}}</title>
+        <link href="{{ basepath }}css/style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!--body start -->
         <div id="body">
             <div id="header">
-                <ul>
-                    <li class="home">home</li>
-                    <li><a href="#">support</a></li>
-                    <li><a href="#">ideas</a></li>
-                    <li><a href="#">blog</a></li>
-                    <li><a href="#">solutions</a></li>
-                    <li><a href="#">contact</a></li>
-                </ul>
-                <img src="{{ basepath}}images/logo.gif" alt="webpool infotech" width="266" height="122" />
-                <br class="spacer" />
+                <div id="logo">
+                    <img class="slide" src="{{basepath}}css/images/logo.jpg"
+                    width="150px" height="250px">
+                </div>
+                <div id="slideshow">
+                    <img class="slide" src="{{basepath}}css/images/test.jpg"
+                    width="600px" height="250px">
+                </div>
             </div>
             <!--left panel start -->
-            <div id="left">
-                <p class="yellow">Wololo</p>
-                <p class="grey1">Wololo grey1</p>
-                <p class="grey2">Wololo grey2</p>
-            </div>
         </div>
     </body>
 </html>

@@ -1,10 +1,11 @@
 from django.conf.urls.defaults import *
-
+from fullhousepub import settings
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^$', 'interface.views.index'),
     # Example:
     # (r'^fullhousepub/', include('fullhousepub.foo.urls')),
 
@@ -14,4 +15,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
-)
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+             {'document_root': settings.MEDIA_ROOT  })
+    )
