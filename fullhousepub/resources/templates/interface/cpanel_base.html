@@ -3,13 +3,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <title>{{title}}</title>
+        <title>CPanel - {{title}}</title>
         <link href="{{ basepath }}css/style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!--body start -->
         <div id="body">
             <div id="header">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Orders</a></li>
+                    <li><a href="#">Offers</a></li>
+                    <li><a href="#">Menu</a></li>
+                </ul>
+            </div>
+            <div id="left">
+                <ul>
+                    <li><a href="{% url users %}">Users</a></li>
+                    <li><a href="{% url menu %}">Menu</a></li>
+                    <li><a href="{% url orders %}">Orders</a></li>
+                    <li><a href="{% url images %}">Images</a></li>
+                    <li><a href="{% url presentation %}">Site Presentation</a></li>
+                </ul>
+            </div>
+            <div id="center">
+                <h1><center> {% block page_heading %}{% endblock%}</center></h1>
+                <hr>
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div id="right">
+                This is so right!
             </div>
         </div>
     </body>
