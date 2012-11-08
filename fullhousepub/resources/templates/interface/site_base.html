@@ -9,15 +9,17 @@
     <body>
         <!--body start -->
         <div id="body">
-            <div id="logo_center">
-                <img class="slide" src="{{basepath}}css/images/LogoText.png"
-                width="819px" height="152px">
+            <div id="header">
+                <div id="logo_center">
+                    <img class="slide" src="{{basepath}}css/images/LogoText.png"
+                    width="819px" height="152px">
+                </div>
             </div>
             <div id="header">
                 <div id="logo_left">
                     <img class="slide" src="{{basepath}}css/images/LionLeft.png"
                     width="200px" height="221px">
-                </div>
+                </div> 
                 <div id="logo_right">
                     <img class="slide" src="{{basepath}}css/images/LionRight.png"
                     width="200px" height="200px">
@@ -27,19 +29,62 @@
                     width="200px" height="200px">
                 </div>
             </div>
-            <div id="content-holder">
-                <div id="decorator">
+            <!--        i
+            <div id="logo_center">
+                <img class="slide" src="{{basepath}}css/images/LogoText.png"
+                width="819px" height="152px">
+            </div>
+            <div id="header">
+                <div id="shield">
+                    <img class="slide" src="{{basepath}}css/images/Shield.png"
+                    width="200px" height="200px">
                 </div>
+            </div>-->
+            <div style="clear:both">
+            </div>
+            <div id="content-holder">
+                <div id="decorator">&nbsp;</div>
                 <div id="linkbar">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{% url menus %}">Meniu</a></li>
+                        <li><a href="{% url offers %}">Oferte</a></li>
+                        <li><a href="{% url events %}">Evenimente</a></li>
+                        <li><a href="{% url gallery %}">Galerie</a></li>
+                        <li><a href="{% url contact %}">Contact</a></li>
                     </ul>
                 </div>
                 <div id="content">
+                    <div id="left">
+                        {% include "interface/left_link.html" %}
+                    </div>
+                    <div id="center">
+                        <div id="center-container">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+<!--                            <div id="item-container">Meniu item1</div>
+                            <div id="item-container">Meniu item2</div>
+                        </div>
+                        <div id="center-container2">
+                            <div id="item-container">Meniu item3</div>
+                            <div id="item-container">Meniu item4</div> 
+                        </div>
+                        <div id="center-container">
+                            <div id="item-container">Meniu item5</div>
+                            <div id="item-container">Meniu item6</div> 
+                        </div>
+                        <div id="center-container2">
+                            <div id="item-container">Meniu item7</div>
+                            <div id="item-container">Meniu item8</div> 
+                        </div>
+-->
+                    </div>
+                    <div id="right">
+                        {% include "interface/auth_side.html" %}
+                        {% include "interface/shopping_basket.html" %}
+                    </div>
                 </div>
+                <div id="decorator">&nbsp;</div>
             </div>
             <!--left panel start -->
         </div>

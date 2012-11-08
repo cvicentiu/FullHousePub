@@ -5,9 +5,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'interface.views.index'),
+    (r'^', include('interface.urls')),
     (r'^upload/', include('core.presentation.urls')),
     (r'^cpanel/', include('core.cpanel.urls')),
+    (r'^auth/', include('core.userprofile.urls')),
     # Example:
     # (r'^fullhousepub/', include('fullhousepub.foo.urls')),
 
