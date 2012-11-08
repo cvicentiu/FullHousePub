@@ -1,0 +1,5 @@
+{% for link in links %}
+<div id="command-container">
+    <a href={% url link.view %} class="left-link">{{link.txt}}</a>
+</div>
+{% endfor %}

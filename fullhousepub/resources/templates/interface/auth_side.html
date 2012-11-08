@@ -1,0 +1,26 @@
+<div id="command-container">
+    {% if user.is_authenticated %}
+        <p class="title">Contul meu</p>
+        <p class="greeting">Bine ai venit, {{nume}}!</p>
+        <a class="button-rounded" title="Administrare cont" href={% url cpanel_homepage %}>Administrare cont</a>
+    {% else %}
+        <p class="title">Login</p>
+        <script language="JavaScript" type="text/javascript">
+            <!--
+            function doLogin ()
+            {
+                document.Login.submit() ;
+            }
+            -->
+        </script>
+        <form action={% url login_parse %} method="post" enctype="multipart/form-data" 
+            name="Login">
+    
+            {% csrf_token %}
+        {{form.username}}
+        {{form.password}}
+        <a class="button-rounded" title="Intră în cont" href="javascript:doLogin()">Intră în cont</a>
+        </form> 
+        <a class="button-rounded" title="Cont nou" href="{% url new_account %}">Cont Nou</a>
+    {% endif %}
+</div>
