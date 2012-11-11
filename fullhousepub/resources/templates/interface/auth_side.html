@@ -1,26 +1,22 @@
 <div id="command-container">
     {% if user.is_authenticated %}
         <p class="title">Contul meu</p>
-        <p class="greeting">Bine ai venit, {{nume}}!</p>
+        <p class="greeting">Bine ai venit, {{ user.username }}!</p>
         <a class="button-rounded" title="Administrare cont" href={% url cpanel_homepage %}>Administrare cont</a>
+        <a class="button-rounded" title="Iesire cont" href="{% url logout_parse %}">Ieșire cont</a>
     {% else %}
         <p class="title">Login</p>
-        <script language="JavaScript" type="text/javascript">
-            <!--
-            function doLogin ()
-            {
-                document.Login.submit() ;
-            }
-            -->
-        </script>
-        <form action={% url login_parse %} method="post" enctype="multipart/form-data" 
-            name="Login">
-    
-            {% csrf_token %}
-        {{form.username}}
-        {{form.password}}
-        <a class="button-rounded" title="Intră în cont" href="javascript:doLogin()">Intră în cont</a>
+        <script src="{{basepath}}js/auth.js"></script>
+        {% if wrong %}
+            Nume utilizator sau parolă greșite.
+        {% endif %}
+        <form action="{% url login_parse %}?next={{ path }}" method="post" enctype="multipart/form-data" name="Login">
+            {% csrf_token %} 
+            <input type=text class="full" name="username" value="Nume cont" onfocus="this.value=''">
+            <input type=password class="full" name="password" value="Parola" onfocus="this.value=''">    
+        <a class="button-rounded" title="Intră" href="javascript:doLogin()">Intră în cont</a>
         </form> 
         <a class="button-rounded" title="Cont nou" href="{% url new_account %}">Cont Nou</a>
+        <a class="link" title="Uitat parolă?" href="{% url forgot_pass %}">Parolă uitată?</a>
     {% endif %}
 </div>

@@ -79,6 +79,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+SESSION_COOKIE_AGE=172800
+
 ROOT_URLCONF = 'fullhousepub.urls'
 
 TEMPLATE_DIRS = (
