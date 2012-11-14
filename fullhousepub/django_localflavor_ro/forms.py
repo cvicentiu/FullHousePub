@@ -49,6 +49,26 @@ class ROCIFField(RegexField):
             raise ValidationError(self.error_messages['invalid'])
         return value[::-1]
 
+class ROREGField(RegexField):
+    """
+    A Romanian Registry of Commerce Validation field
+    """
+    default_error_messages = {
+            'invalid':_("Enter a valid Registry of Commerce number"),
+    }
+
+    def __init__(self, max_length=15, min_length=10, *args, **kwargs):
+        super(ROREGField, self).__init__(r'^J[0-9]{2}/[1-9][0-9]{0,5}/[1-2][0-9][0-9][0-9]',
+                        max_length, min_length, *args, **kwargs)
+    def clean(self, value):
+        """
+        Validation
+        """
+        value = super(ROREGField, self).clean(value)
+        if value in EMPTY_VALUES:
+            return ''
+        return value
+
 class ROCNPField(RegexField):
     """
     A Romanian personal identity code (CNP) field
