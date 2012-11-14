@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     (r'^upload/', include('core.presentation.urls')),
     (r'^cpanel/', include('core.cpanel.urls')),
     (r'^auth/', include('core.userprofile.urls')),
+    (r'^order/', include('core.orders.urls')),
     # Example:
     # (r'^fullhousepub/', include('fullhousepub.foo.urls')),
 

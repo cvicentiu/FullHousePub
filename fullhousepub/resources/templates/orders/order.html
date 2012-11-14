@@ -1,0 +1,29 @@
+{% extends 'interface/site_base.html' %}
+{% block content %}
+<h1><center> Comandă </center></h1>
+<form action="{% url update_qty %}?next={{path}}" method="post" name="order"
+    class="order">
+{% csrf_token %}
+<table width=650px border=0>
+    {% for field in  form %}
+<tr>
+    <td width=250px><p> {{ field.label }}</p></td>
+    <td width=250px><p>{{ field }}</p></td>
+    <td width=100px><p>{{ field.errors|safe}}</p></td>
+</tr>
+{% endfor %}
+</table>
+<hr>
+<a href="javascript:finalise(1, '')" class="link">Actualizează cantități</a>
+</form>
+<script type="text/javascript">
+    <!--
+
+function finalise(i, url) {
+	if (i == 2) {
+		$("#order").attr("action", url);
+	};
+	document.Order.submit();
+}	
+    -->
+{% endblock %}

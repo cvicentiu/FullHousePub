@@ -1,0 +1,27 @@
+{% extends 'interface/site_base.html' %}
+{% block content %}
+<h1> Meniu </h1>
+<h2 class="subtitle">- Subcat -</h2>
+<h3> Test h3 heading</h3>
+<input type="text">
+<label> trol</label>
+<input type="text" class="qty">
+<hr>
+{% for item in dict.items %}
+<div id="item-container">
+        <div id="item-container-left">
+            <img src="{{ basepath }}{{item.picture.photo}}" title="{{ item.name }}"
+            width=100px height=100px>
+            <a href="{% url process_buy id=item.id %}?next={{path}}">Adaugă in coș</a>
+        </div>
+            <div id="item-text">    
+                <h2><center>{{ item.name }}</center></h2>
+                <h3 class="price">Preț: {{item.price}} Lei</h3>
+                {% for detail in item.details.all %}
+                <h3>{{ detail.title }}</h3>
+                <p>{{ detail.value }}</p>
+                {% endfor %}
+            </div>
+    </div>
+{% endfor %}
+{% endblock %}

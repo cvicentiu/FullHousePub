@@ -17,6 +17,11 @@ class Picture(models.Model):
     title = models.CharField(max_length=20, default='Untitled', null=False)
     description = models.CharField(max_length=300, default='---', null=False)
 
+class ContactInfo(models.Model):
+
+    address = models.CharField(max_length=50)
+    phone = models.CharField(max_length=20)
+    hours = models.CharField(max_length=20)
 #TODO
 #class Catalog(models.Model):
 

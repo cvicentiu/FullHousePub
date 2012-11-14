@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>{{title}}</title>
         <link href="{{ basepath }}css/style.css" rel="stylesheet" type="text/css" />
+        <link href="{{ basepath }}css/center.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!--body start -->
@@ -66,10 +67,8 @@
                         {% include "interface/left_link.html" %}
                     </div>
                     <div id="center">
-                        <div id="center-container">
-                            {% block content %}
-                            {% endblock %}
-                        </div>
+                        {% block content %}
+                        {% endblock %}
                 </div>
                 <div id="right">
                     {% include "interface/auth_side.html" %}

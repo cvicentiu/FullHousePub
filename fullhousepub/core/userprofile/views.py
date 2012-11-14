@@ -20,12 +20,9 @@ def login_parse(request):
 
 
 def logout_parse(request):
-    next = request.GET.get('next', default = 'index')
+    next = request.GET.get('next', default = '/')
     logout(request)
-    return HttpResponseRedirect(reverse(next))
-
-
-
+    return HttpResponseRedirect(next)
 
 def new_account(request):
     return HttpResponse("TODO")

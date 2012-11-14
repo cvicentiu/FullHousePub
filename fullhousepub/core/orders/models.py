@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.db.models import Sum
 from fullhousepub.core.customers.models import CustomerFirm, CustomerPerson
@@ -5,13 +6,9 @@ from fullhousepub.core.menu.models import MenuItem
 
 # Create your models here.
 class Buyer(models.Model):
-    id = models.IntegerField(primary_key=True)
     is_firm = models.BooleanField()
-    firm = models.ForeignKey(CustomerFirm, related_name='+')
-    person = models.ForeignKey(CustomerPerson, related_name='+')
 
 class Item(models.Model):
-    id = models.IntegerField(primary_key=True)
     menu_item = models.ForeignKey(MenuItem, related_name='+')
     price_at_order = models.FloatField()
     qty = models.IntegerField()
@@ -32,11 +29,12 @@ class Order(models.Model):
             (DELIVERED, 'Order Delivered'),
     )
 
-    id = models.IntegerField(primary_key=True)
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(default=datetime.now())
     status = models.CharField(max_length=1,
                               choices=STATUS_USAGE,
                               default=LAUNCHED)
+    buyer_firm = models.ForeignKey(CustomerFirm, related_name='+')
+    buyer_person = models.ForeignKey(CustomerPerson, related_name='+')
 
     def total_price(self):
         return self.items.aggregate(Sum('total'))

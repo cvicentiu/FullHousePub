@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_localflavor_ro.forms import *
 # Create your models here.
 class CustomerPerson(models.Model):
-    id = models.IntegerField(primary_key=True)
 
     user_linked = models.ForeignKey(User, related_name='persons')
     
@@ -13,7 +13,6 @@ class CustomerPerson(models.Model):
     date_of_birth = models.DateField()
 
 class CustomerFirm(models.Model):
-    id = models.IntegerField(primary_key=True)
     
     user_linked = models.ForeignKey(User, related_name='firms')
 

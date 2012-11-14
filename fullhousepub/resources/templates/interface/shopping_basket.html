@@ -1,5 +1,29 @@
 <div id="command-container">
     <p class="title">Coș cumpărături</p>
-    Cosul este gol
+    {% if basket_goods.total = 0 %}
+    <p>Coșul este gol</p>
+    {% else %}
+    <!--TODO
+    table to arange these nicely
+    -->
+    <table width=130px>
+    {% for item in basket_goods.items %}
+    <tr>
+        <td width=40%> {{ item.0 }}</td> 
+        <td width=20%> {{ item.1 }}</td> 
+        <td width=30%> {{ item.2 }}</td>
+        <td width=10%> <a href="{% url clear_qty id=item.3 %}?next={{ path }}"
+                class="link2">X</a></td>
+    </tr>    
+    {% endfor %}
+    <tr>
+        <td colspan=2>Total:</td>
+        <td> {{basket_goods.total}}</td>
+        <td> &nbsp;</td>
+    </tr>
+    </table>
+    <a href="{% url update_qty %}?next={{ path }}" class="button-rounded">Actualizează cantități</a>
+    <a href="{% url finalise_order %}?next={{ path }}" class="button-rounded">Trimite comanda</a>
+    {% endif %}
 </div>
 
