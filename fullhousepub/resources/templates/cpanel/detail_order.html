@@ -1,0 +1,88 @@
+{% extends 'cpanel/homepage.html' %}
+{% block content %}
+<h1><center> Detalii Comanda </center></h1>
+<h2 class="subtitle">#{{order.id}}</h2>
+<h3>Detalii Cumpărător</h3>
+<table class="small">
+    <tr>
+        <th> Cont </th>
+        <th> Nume </th>
+        <th> Adresă livrare </th>
+        <th> Telefon </th>
+    </tr>
+    <tr>
+        <td>{{order.buyer_person.user_linked}}</td>
+        <td>{{order.buyer_person.first_name}}
+            {{order.buyer_person.last_name}}</td>
+        <td>{{order.buyer_person.address}}</td>
+        <td>{{order.buyer_person.telephone}}</td>
+    </tr>
+    {% if user.get_profile.is_worker or user.is_staff %}
+    <tr>
+        <td colspan=6><a href="{% url edit_something 'buyer_person'
+                order.buyer_person.id %}">Modifică</a></td>
+    </tr>
+        {% endif %}
+</table>
+<br>
+<br>
+<h3>Detalii Facturare</h3>
+{% if order.buyer_firm.name != "bogus" %}
+<table class="small">
+    <tr>
+        <th>Nume firmă</th>
+        <th>CUI</th>
+        <th>Nr. înreg</th>
+        <th>Cont Bancă</th>
+        <th>Nume Bancă</th>
+        <th>Adresă facturare</th>
+    </tr>
+    <tr>
+        <td>{{order.buyer_firm.name}}</td>
+        <td>{{order.buyer_firm.fiscal_id}}</td>
+        <td>{{order.buyer_firm.fiscal_reg}}</td>
+        <td>{{order.buyer_firm.bank_account}}</td>
+        <td>{{order.buyer_firm.bank_name}}</td>
+        <td>{{order.buyer_firm.bill_address}}</td>
+    </tr>
+        {% if user.get_profile.is_worker or user.is_staff %}
+    <tr>
+        <td colspan=6><a href="{% url edit_something 'buyer_firm' item.id %}">Modifică</a></td>
+    </tr>
+        {% endif %}
+
+    </tr>
+</table>
+<br><br>
+{%else %}
+<h2 class="subtitle">Fără factură</h2>
+{% endif %}
+<h3>Produse comandate</h3>
+<table class="small">
+    <tr>
+        <th>Produs</th>
+        <th>Cantitate</th>
+        <th>Preț / Buc</th>
+        {% if user.get_profile.is_worker or user.is_staff %}
+        <th>Modifică</th>
+        {% endif %}
+    </tr>
+    {% for item in order.items.all %}
+    <tr>
+        <td>{{item.menu_item}}</td>
+        <td>{{item.qty}}</td>
+        <td>{{item.price_at_order}} Lei</td>
+        {% if user.get_profile.is_worker or user.is_staff %}
+        <td><a href="{% url edit_something 'order_item' item.id
+                %}">Modifică</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan=2>Total</td>
+        <td>{{order.total_price}} Lei</td >
+
+    </tr>
+</table>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'cpanel/homepage.html' %}
+{% block content %}
+<h1><center>Oferte</center></h1>
+{% if no_images %}
+<p>Înainte de a putea adăuga oferte, trebuie adăugată cel puțin o
+imagine în baza de date</p>
+{% else %}
+<table class=small>
+    <tr>
+        <th>Ofertă</th>
+        <th>Prezentare</th>
+        <th colspan=2>Editare</th>
+    </tr>
+    {% for offer in offers %}
+    <tr>
+        <td> {{offer}}</td>
+        <td> {{offer.text}} Lei</td>
+        <td> <a href={% url edit_something 'offer' offer.id %}>Modifică</a> </td>
+        <td> <a href={% url delete_something 'offer' offer.id %}>Șterge</a> </td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan=4>
+            <a href={% url add_something 'offer' %}>Adaugă ofertă</a>
+        </td>
+    </tr>
+</table>
+{% endif %}
+{% endblock %}

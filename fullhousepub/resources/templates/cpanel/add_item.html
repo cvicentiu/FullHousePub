@@ -1,0 +1,11 @@
+{% extends 'cpanel/homepage.html' %}
+{% block content %}
+<form action={% url add_something what %} method="POST" 
+    enctype="multipart/form-data"> 
+{% csrf_token %}
+<table>
+{{item_form}}
+</table>
+<input type="Submit" value="Adaugă">
+</form>
+{%endblock %}

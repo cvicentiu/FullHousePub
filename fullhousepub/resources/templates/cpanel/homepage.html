@@ -1,0 +1,39 @@
+{% extends 'interface/site_base.html' %}
+{% block left_content %}
+<div id="left-command-container">
+    <p class="title">Date personale</p>
+    <div id="left-link">
+    <a href={% url change_f_profile %}>Persoană fizică</a>
+    </div>
+    <div id="left-link">
+    <a href={% url change_j_profile %}>Persoane juridice</a>
+    </div>
+    <div id="left-link">
+    <a href={% url change_address_profile%}>Adresă livrare</a>
+    </div>
+    <div id="left-link">
+    <a href={% url view_orders%}>Istoric Comenzi</a>
+    </div>
+</div>
+{% if user.is_staff or user.get_profile.is_worker %}
+<div id="left-command-container">
+    <p class="title">Secțiune Administrator</p>
+    <div id="left-link">
+    <a href={% url view_menu %}>Meniu</a>
+    </div>
+    <div id="left-link">
+    <a href={% url view_images %}>Imagini</a>
+    </div>
+    <div id="left-link">
+    <a href={% url view_users %}>Clienți</a>
+    </div>
+    <div id="left-link">
+    <a href={% url view_events %}>Evenimente</a>
+    </div>
+    <div id="left-link">
+    <a href={% url view_offers %}>Oferte</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+

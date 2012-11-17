@@ -1,0 +1,38 @@
+#left-command-container{
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	float:left;
+	border:2px dashed #444444;
+	width:140px;
+	margin:2px 2px 2px 2px;
+	padding:5px 5px 5px 5px;
+	font:bold 10px/10px "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#left-command-container p.title{
+	display:block;
+	border-bottom: 1px dashed #444444;
+	width:140px;
+/*      background-color:#970101;*/
+	text-transform:uppercase;
+	color:#000000;
+	padding:2px 0px 2px 0px;
+	font:bold 14px/14px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-align:center;
+}
+
+#left-link a {
+	display:block;
+	width:140px;
+	font:bold 13px/18px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#000;
+	text-decoration:none;
+	text-align:center;
+	float:left;
+	border:1px dashed #444444;
+	background-color:#aaaaaa;
+	border:1px dashed #444444;
+	margin-top:2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}

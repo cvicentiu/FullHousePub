@@ -1,0 +1,35 @@
+{% extends 'cpanel/homepage.html' %}
+{% block content %}
+<h1><center>Utilizatori</center></h1>
+<table class=small>
+    <tr>
+        <th>Utilizator</th>
+        <th>Nume</th>
+        <th>Prenume</th>
+        <th>Data Nașterii</th>
+        <th>Angajat?</th>
+        {% if user.is_staff %}
+        <th colspan=2>Editare</th>
+        {% endif %}
+    </tr>
+    {% for u in users %}
+    <tr>
+        <td> {{u.username}}</td>
+        <td> {{u.last_name}}</td>
+        <td> {{u.first_name}}</td>
+        <td> {{u.get_profile.date_of_birth}}</td>
+        <td> 
+            {% if u.get_profile.is_worker or u.is_staff%}
+                Da
+            {% else %}
+                Nu
+            {% endif %}
+        </td>
+        {% if user.is_staff %}
+        <td><a href='/admin/auth/user/{{u.id}}'>Modifică</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    <tr>
+</table>
+{% endblock %}

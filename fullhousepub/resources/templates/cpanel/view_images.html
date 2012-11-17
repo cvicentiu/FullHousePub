@@ -1,0 +1,52 @@
+{% extends 'cpanel/homepage.html' %}
+{% block content %}
+<h1><center>Imagini</center></h1>
+<table class=small>
+    <tr>
+        <th colspan=3>Galerie</th>
+        <th>Titlu</th>
+        <th>Folosit la</th>
+        <th>Descriere</th>
+        <th colspan=2>Editare</th>
+    </tr>
+    <tr>
+    {% for gallery, pictures in pictures.iteritems %}
+    <td rowspan={{pictures|length}}><h3>{{gallery}}</h3>
+    <td rowspan={{pictures|length}}>
+        <a href={% url delete_something 'gallery' 1 %}>Șterge</a>
+    </td>
+    <td rowspan={{pictures|length}}>
+        <a href={% url edit_something 'gallery' 1 %}>Modifică</a>
+    </td>
+    </td>
+        {% if not pictures %}
+        <td colspan=5>Nici o imagine asociată galeriei</td>
+    </tr>
+        {% endif %}
+        {% for picture in pictures %}
+        <td> {{picture}}</td>
+        <td> 
+            {% if picture.usage = 'PR' %}
+            Prezentare
+            {% else %}
+            Catalog
+            {% endif %}
+        </td>
+        <td>{{picture.description}}</td>
+        <td> <a href={% url edit_something 'picture' picture.id %}>Modifică</a> </td>
+        <td> <a href={% url delete_something 'picture' picture.id %}>Șterge</a> </td>
+    </tr>
+    <tr>
+        {%endfor %}
+    {%endfor%}
+    </tr>
+    <tr>
+        {% if galleries %}
+        <td colspan=3><a href={% url add_something 'gallery' %}>Adaugă galerie</a></td>
+        <td colspan=5><a href={% url add_something 'picture' %}>Adaugă imagine</a></td>
+        {% else %}
+        <td colspan=6><a href={% url add_something 'gallery' %}>Adaugă galerie</a></td>
+        {% endif %}
+    </tr>
+</table>
+{% endblock %}
