@@ -1,4 +1,7 @@
 {% extends 'interface/site_base.html' %}
+{% block title %}
+Actualizare cantități comandă
+{% endblock %}
 {% block content %}
 <h1><center> Comandă </center></h1>
 <form action="{% url update_qty %}?next={{path}}" method="post" name="order"
@@ -13,8 +16,8 @@
 </tr>
 {% endfor %}
 </table>
-<hr>
 <a href="javascript:finalise(1, '')" class="link">Actualizează cantități</a>
+<hr>
 </form>
 <script type="text/javascript">
     <!--
@@ -23,7 +26,8 @@ function finalise(i, url) {
 	if (i == 2) {
 		$("#order").attr("action", url);
 	};
-	document.Order.submit();
+	document.order.submit();
 }	
     -->
+</script>
 {% endblock %}

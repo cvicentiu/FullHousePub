@@ -1,1 +1,19 @@
 {% extends 'interface/site_base.html' %}
+{% block title %}
+Evenimente
+{% endblock %}
+{% block content %}
+<h1><center> Evenimente </center></h1>
+{% for event in events %}
+<div id="offer-container">
+    <p class="title"> {{event.title}}</p>
+    <p class="when"> {{event.when}}</p>
+    <div id="event-img">
+        <img src="{{basepath}}{{event.picture.photo}}" title="{{event.title}}">
+    </div>
+    <div id="event-text">
+        {{ event.text }}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

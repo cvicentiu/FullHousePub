@@ -1,1 +1,19 @@
 {% extends 'interface/site_base.html' %}
+{% block title %}
+Oferte
+{% endblock %}
+
+{% block content %}
+<h1><center> Oferte </center></h1>
+{% for offer in offers %}
+<div id="offer-container">
+    <p class="title"> {{offer.title}}</p>
+    <div id="offer-img">
+        <img src="{{basepath}}{{offer.picture.photo}}" title="{{offer.title}}">
+    </div>
+    <div id="offer-text">
+        {{ offer.text|safe }}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,7 +1,7 @@
 # Django settings for fullhousepub project.
 
 DEBUG = True
-
+import django.conf.global_settings as DEFAULT_SETTINGS
 import os.path
 
 TEMPLATE_DEBUG = DEBUG
@@ -34,7 +34,7 @@ TIME_ZONE = 'Europe/Bucharest'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ro-ro'
 
 SITE_ID = 1
 
@@ -89,13 +89,10 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.normpath(os.path.dirname(__file__)) + "/resources/templates/"
 )
-TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
-        "django.core.context_processors.debug",
-        "django.core.context_processors.i18n",
-        "django.core.context_processors.media",
-        "django.core.context_processors.static",
-        "django.core.context_processors.request",
-        "django.contrib.messages.context_processors.messages",
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS +(
+        "context_processors.basepath",
+        "context_processors.session_order",
+
         )
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -108,7 +105,6 @@ INSTALLED_APPS = (
     'fullhousepub.interface',
     'fullhousepub.core.presentation',
     'fullhousepub.core.orders',
-    'fullhousepub.core.customers',
     'fullhousepub.core.menu',
     'fullhousepub.core.userprofile',
 

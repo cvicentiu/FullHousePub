@@ -9,6 +9,7 @@ class UserProfile(models.Model):
     is_worker = models.BooleanField(default=False, null=False)
     date_of_birth = models.DateField(null=False)
 
+
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance, date_of_birth=datetime.now())

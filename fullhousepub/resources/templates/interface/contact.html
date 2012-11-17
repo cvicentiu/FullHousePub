@@ -1,1 +1,27 @@
 {% extends 'interface/site_base.html' %}
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+<h1><center> Contact </center></h1>
+{% for contact in contacts %}
+<div id="contact-container">
+    <p class="title">{{contact.title}}</p></td>
+    <table>
+        <tr>
+            <td><p class="desc">Adresă:</p></td>
+            <td><p class="txt">{{contact.address}}</p></td>
+        </tr>
+        <tr>
+            <td><p class="desc">Telefon:</p></td>
+            <td><p class="txt">{{contact.phone}}</p></td>
+        </tr>
+        <tr>
+            <td><p class="desc">Program:</p></td>
+            <td><p class="txt">{{contact.hours}}</p></td>
+        </tr>
+    </table>
+</div>
+{% endfor %}
+{% endblock %}

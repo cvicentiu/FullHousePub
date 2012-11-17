@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 from fullhousepub.core.presentation.models import Picture
 from fullhousepub.core.presentation.forms import ImageUploadForm
-
+"""
 def file_upload(request):
     #Handle image uploading
     if request.method == 'POST':
@@ -25,4 +25,4 @@ def file_upload(request):
     return render_to_response('interface/image_upload.html', {'basepath':
         'static/', 'pictures':pictures, 'form':form},
         context_instance=RequestContext(request))
-
+"""

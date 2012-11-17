@@ -1,7 +1,7 @@
 <div id="command-container">
     {% if user.is_authenticated %}
         <p class="title">Contul meu</p>
-        <p class="greeting">Bine ai venit, {{ user.username }}!</p>
+        <p class="greeting">Bine ai venit, {{ user.first_name }}!</p>
         <a class="button-rounded" title="Administrare cont" href={% url cpanel_homepage %}>Administrare cont</a>
         <a class="button-rounded" title="Iesire cont" href="{% url logout_parse %}">Ieșire cont</a>
     {% else %}

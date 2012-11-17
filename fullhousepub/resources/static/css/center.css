@@ -207,4 +207,65 @@
 /*--------------------------------end menus specific css--------------*/
 
 
+#center table.small {
+	width:660px;
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: none;
+	border-color: #444444;
+	border-collapse: collapse;
+	font: 10px/10px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	float:left;
+}
+#center table.small th {
+	border-width: 1px;
+	padding: 2px;
+	border-style: inset;
+	border-color: #444444;
+	background-color: white;
+	font:bold 10px/10px "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+#center table.small td {
+	border-width: 1px;
+	padding: 2px;
+	border-style: inset;
+	border-color: #444444;
+	font:10px/10px "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#center table.small tr.red {
+	background-color: #D63333;
+}
+
+#center table.small tr.green {
+	background-color: #138A15;
+}
+
+#center table.small tr.yellow {
+	background-color: #E0AF1B;
+}
+#center a {
+	display:block;
+	font:bold 10px/10px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-decoration:none;
+	color:#000000;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background-color:#aaaaaa;
+	border:1px dashed #444444;
+	padding: 3px 3px 3px 3px;
+	text-align:center;
+	
+}
+#center a:hover {
+	display:block;
+	font:bold 10px/10px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-decoration:underline;
+	color:#000000;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;	
+	background-color:#aaaaaa; 
+	padding: 3px 3px 3px 3px;
+	text-align:center;
+}
 

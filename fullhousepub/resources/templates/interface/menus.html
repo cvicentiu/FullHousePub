@@ -1,12 +1,10 @@
 {% extends 'interface/site_base.html' %}
+{% block title %}
+Meniu
+{% endblock %}
 {% block content %}
 <h1> Meniu </h1>
-<h2 class="subtitle">- Subcat -</h2>
-<h3> Test h3 heading</h3>
-<input type="text">
-<label> trol</label>
-<input type="text" class="qty">
-<hr>
+<h2 class="subtitle">{{subtitle}}</h2>
 {% for item in dict.items %}
 <div id="item-container">
         <div id="item-container-left">
@@ -24,4 +22,20 @@
             </div>
     </div>
 {% endfor %}
+{% endblock %}
+{% block left_content %}
+<div id="left-command-container">
+{% for category in left_submenu %}
+<div id="left-link">
+    <a href={% url menus category.name 0 %}>
+        {% if category.name = 'default' %}
+            Întreg meniul
+        {% else %}
+
+        {{category.name}}
+        {%endif%}
+    </a>
+</div>
+{% endfor %}
+</div>
 {% endblock %}

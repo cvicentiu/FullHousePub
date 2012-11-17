@@ -1,1 +1,21 @@
 {% extends 'interface/site_base.html' %}
+{% block title %}
+Galerie Poze
+{% endblock %}
+
+{% block content %}
+<h1><center> Galerie </center></h1>
+{% if not galleries %}
+<p> Ne pare rău, momentan nu sunt disponibile imagini. </p>
+{% endif %}
+{% for gallery in galleries %}
+<div id="gallery-container">
+    <p class="title"> {{gallery.title}} </p>
+    {% for image in gallery.images.all %}
+    Iote o imagine
+    <!-- TODO Lightbox
+    -->
+    {% endfor %}
+</div>
+{% endfor %}
+{% endblock %}
