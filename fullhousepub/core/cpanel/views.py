@@ -89,6 +89,10 @@ def get_classes(what):
         model = Order
         form = OrderForm
         next_view = view_orders
+    if what == 'user_f':
+        model = UserProfile
+        form = UserForm
+        next_view = homepage
 
     return (model, form, next_view)
 
@@ -190,7 +194,6 @@ def change_order(request, order_id, status):
         if status == u'3':
             order.status = 'Livrată'
         order.save()
-        print order.status
     return view_orders(request)
 
 @login_required
