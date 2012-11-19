@@ -1,5 +1,5 @@
 from django.contrib import admin
-from fullhousepub.core.presentation.models import *
+from core.presentation.models import *
 
 admin.site.register(Gallery)
 admin.site.register(Picture)

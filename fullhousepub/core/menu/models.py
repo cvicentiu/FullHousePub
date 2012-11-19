@@ -1,5 +1,5 @@
 from django.db import models
-from fullhousepub.core.presentation.models import Picture
+from core.presentation.models import Picture
 # Create your models here.
 
 class Category(models.Model):

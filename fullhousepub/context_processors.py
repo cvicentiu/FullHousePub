@@ -26,7 +26,7 @@ def session_order(request):
         'basket_goods':process_session_order(request.session)
         }
 def image_top(request):
-    from fullhousepub.core.presentation.models import Picture
+    from core.presentation.models import Picture
     count = Picture.objects.filter(usage='PR').count()
     pics = Picture.objects.filter(usage='PR')
     images = []

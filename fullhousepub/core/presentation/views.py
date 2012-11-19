@@ -5,8 +5,8 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from fullhousepub.core.presentation.models import Picture
-from fullhousepub.core.presentation.forms import ImageUploadForm
+from core.presentation.models import Picture
+from core.presentation.forms import ImageUploadForm
 """
 def file_upload(request):
     #Handle image uploading

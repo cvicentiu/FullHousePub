@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.models import User
 from django_localflavor_ro.forms import *
-from fullhousepub.core.menu.models import MenuItem
+from core.menu.models import MenuItem
 from datetime import datetime
 
 # Create your models here.

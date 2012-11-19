@@ -1,9 +1,16 @@
 # Django settings for fullhousepub project.
 
 DEBUG = True
+from djangoappengine.settings_base import *
+import os
+
 import django.conf.global_settings as DEFAULT_SETTINGS
 import os.path
 
+# Activate django-dbindexer for the default database
+DATABASES['native'] = DATABASES['default']
+DATABASES['default'] = {'ENGINE': 'dbindexer', 'TARGET': 'native'}
+AUTOLOAD_SITECONF = 'indexes'
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -11,17 +18,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/vicentiu/Documents/devel/FullHousePub/fullhousepub/data.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -81,7 +77,7 @@ MIDDLEWARE_CLASSES = (
 
 SESSION_COOKIE_AGE=172800
 
-ROOT_URLCONF = 'fullhousepub.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -103,12 +99,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    'fullhousepub.interface',
-    'fullhousepub.core.presentation',
-    'fullhousepub.core.orders',
-    'fullhousepub.core.menu',
-    'fullhousepub.core.userprofile',
+    'djangotoolbox',
+    'autoload',
+    'dbindexer',
 
-#TODO
-#    'fullhousepub.core.presentation'
+    'interface',
+    'core.presentation',
+    'core.orders',
+    'core.menu',
+    'core.userprofile',
+
+    'djangoappengine',
 )

@@ -4,9 +4,9 @@ from django.http import HttpResponse
 from django.core.context_processors import csrf
 from django.template import RequestContext
 from django.db.models import Q
-from fullhousepub.core.presentation.models import *
-from fullhousepub.core.menu.models import *
-from fullhousepub.core.userprofile.forms import *
+from core.presentation.models import *
+from core.menu.models import *
+from core.userprofile.forms import *
 
 def main_context(request):
     context = {};

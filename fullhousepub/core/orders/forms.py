@@ -2,7 +2,7 @@
 from django import forms
 from django_localflavor_ro.forms import *
 from django.utils.datastructures import SortedDict
-from fullhousepub.core.menu.models import MenuItem
+from core.menu.models import MenuItem
 from models import *
 
 

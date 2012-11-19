@@ -4,13 +4,13 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import HttpResponse
-from fullhousepub.core.orders.models import *
-from fullhousepub.core.orders.forms import *
-from fullhousepub.core.menu.models import *
-from fullhousepub.core.menu.forms import *
-from fullhousepub.core.presentation.models import *
-from fullhousepub.core.presentation.forms import *
-from fullhousepub.core.userprofile.forms import UserForm
+from core.orders.models import *
+from core.orders.forms import *
+from core.menu.models import *
+from core.menu.forms import *
+from core.presentation.models import *
+from core.presentation.forms import *
+from core.userprofile.forms import UserForm
 
 
 @login_required

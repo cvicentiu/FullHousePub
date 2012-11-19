@@ -1,5 +1,5 @@
 from django.contrib import admin
-from fullhousepub.core.orders.models import *
+from core.orders.models import *
 
 admin.site.register(Item)
 admin.site.register(Order)
