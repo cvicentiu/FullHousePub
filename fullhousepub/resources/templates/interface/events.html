@@ -12,7 +12,7 @@ Evenimente
         <img src="{{basepath}}{{event.picture.photo}}" title="{{event.title}}">
     </div>
     <div id="event-text">
-        {{ event.text }}
+        {{ event.text|safe }}
     </div>
 </div>
 {% endfor %}

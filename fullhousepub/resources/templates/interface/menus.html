@@ -8,8 +8,10 @@ Meniu
 {% for item in dict.items %}
 <div id="item-container">
         <div id="item-container-left">
-            <img src="{{ basepath }}{{item.picture.photo}}" title="{{ item.name }}"
+            <a href="{{basepath}}{{item.picture.photo}}" rel="lightbox">
+                <img src="{{ basepath }}{{item.picture.photo}}" title="{{ item.name }}"
             width=100px height=100px>
+            </a>
             <a href="{% url process_buy id=item.id %}?next={{path}}">Adaugă in coș</a>
         </div>
             <div id="item-text">    
@@ -25,16 +27,14 @@ Meniu
 {% endblock %}
 {% block left_content %}
 <div id="left-command-container">
+<div id="left-link">
+    <a href={% url menus 'default' 0 %}>
+            Întreg meniul
+    </a>
+</div>
 {% for category in left_submenu %}
 <div id="left-link">
-    <a href={% url menus category.name 0 %}>
-        {% if category.name = 'default' %}
-            Întreg meniul
-        {% else %}
-
-        {{category.name}}
-        {%endif%}
-    </a>
+    <a href={% url menus category.name 0 %}>{{category.name}}</a>
 </div>
 {% endfor %}
 </div>

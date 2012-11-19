@@ -1,0 +1,14 @@
+{% extends 'interface/site_base.html' %}
+{% block title %}
+Cont Nou
+{% endblock %}
+
+{% block content %}
+<h1><center> Cont Nou </center></h1>
+<form method="POST" action="{% url new_account %}?next={{path}}">
+{% csrf_token %}
+<table class=form>
+{{form}}
+</table>
+</form>
+{% endblock %}

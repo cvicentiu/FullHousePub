@@ -1,5 +1,4 @@
 ## -*- coding: utf-8 -*-
-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -67,9 +66,11 @@ def finalise_order(request):
             except:
                 pass
 
-            message = OrderMessage.objects.get(pk='success')
+            message = "Comanda a fost preluată cu succes. Veți fi\
+                    contactați în cel mai scurt timp de catre unul din\
+                    operatorii noștri."
             return render_to_response('orders/order_success.html',
-                    {'path':next, 'message':message.text},
+                    {'path':next, 'message':message},
                     context_instance=RequestContext(request))
         #form has errors, send it back to the user
         return render_to_response('orders/order_finish.html',

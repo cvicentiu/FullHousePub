@@ -8,6 +8,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     is_worker = models.BooleanField(default=False, null=False)
     date_of_birth = models.DateField(null=False)
+    address = models.CharField(null=True, max_length=200)
 
 
 def create_user_profile(sender, instance, created, **kwargs):

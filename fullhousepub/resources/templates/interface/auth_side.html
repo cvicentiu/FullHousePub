@@ -16,7 +16,7 @@
             <input type=password class="full" name="password" value="Parola" onfocus="this.value=''">    
         <a class="button-rounded" title="Intră" href="javascript:doLogin()">Intră în cont</a>
         </form> 
-        <a class="button-rounded" title="Cont nou" href="{% url new_account %}">Cont Nou</a>
-        <a class="link" title="Uitat parolă?" href="{% url forgot_pass %}">Parolă uitată?</a>
+        <a class="button-rounded" title="Cont nou" href="{% url new_account %}?next={{path}}">Cont Nou</a>
+        <!--<a class="link" title="Uitat parolă?" href="{% url forgot_pass %}">Parolă uitată?</a>-->
     {% endif %}
 </div>

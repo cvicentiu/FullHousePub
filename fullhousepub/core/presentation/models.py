@@ -27,10 +27,10 @@ class Picture(models.Model):
 
 
 class ContactInfo(models.Model):
-    title = models.CharField(primary_key=True, max_length=50)
+    title = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
     phone = models.CharField(max_length=20)
-    hours = models.CharField(max_length=20)
+    hours = models.CharField(max_length=60)
     def __unicode__(self):
         return self.title
 

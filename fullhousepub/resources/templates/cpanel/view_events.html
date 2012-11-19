@@ -10,7 +10,7 @@
     {% for event in events %}
     <tr>
         <td> {{event}}</td>
-        <td> {{event.text}} Lei</td>
+        <td> {{event.text}}</td>
         <td> <a href={% url edit_something 'event' event.id %}>Modifică</a> </td>
         <td> <a href={% url delete_something 'event' event.id %}>Șterge</a> </td>
     </tr>

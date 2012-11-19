@@ -12,9 +12,9 @@ Galerie Poze
 <div id="gallery-container">
     <p class="title"> {{gallery.title}} </p>
     {% for image in gallery.images.all %}
-    Iote o imagine
-    <!-- TODO Lightbox
-    -->
+    <a href="{{basepath}}{{image.photo}}" rel=lightbox[{{gallery.title}}>
+        <img src="{{basepath}}{{image.photo}}">
+    </a>
     {% endfor %}
 </div>
 {% endfor %}

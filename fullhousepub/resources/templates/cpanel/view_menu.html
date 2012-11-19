@@ -1,4 +1,7 @@
 {% extends 'cpanel/homepage.html' %}
+{% block title %}
+Administrare meniu 
+{% endblock %}
 {% block content %}
 <h1><center>Meniu</center></h1>
 {% if no_images %}
@@ -9,6 +12,7 @@ imagine în baza de date</p>
     <tr>
         <th>Categorie</th>
         <th>Produs</th>
+        <th>Detalii</th>
         <th>Preț</th>
         <th>Editare</th>
     </tr>
@@ -25,6 +29,16 @@ imagine în baza de date</p>
         {% endif %}
         {% for item in items %}
         <td> {{item}}</td>
+        <td> {% for detail in item.details.all %}
+            <a href="{% url edit_something 'detail' detail.id %}" class=link>
+                {{detail}}
+            </a>
+            <a href="{% url delete_something 'detail' detail.id %}" class=link>
+                Șterge
+            </a>
+            <br>
+            {% endfor %}
+        </td>
         <td> {{item.price}} Lei</td>
         <td> <a href={% url edit_something 'item' item.id %}>Modifică</a> </td>
     </tr>
@@ -35,9 +49,10 @@ imagine în baza de date</p>
     <tr>
         {% if categories %}
         <td><a href={% url add_something 'category' %}>Adaugă categorie</a></td>
-        <td colspan=3><a href={% url add_something 'item' %}>Adaugă preparat</a></td>
+        <td><a href={% url add_something 'item' %}>Adaugă preparat</a></td>
+        <td><a href={% url add_something 'detail' %}>Adaugă detaliu</a></td>
         {% else %}
-        <td colspan=4><a href={% url add_something 'category' %}>Adaugă categorie</a></td>
+        <td colspan=5><a href={% url add_something 'category' %}>Adaugă categorie</a></td>
         {% endif %}
     </tr>
 </table>

@@ -1,0 +1,36 @@
+{% extends 'cpanel/homepage.html' %}
+{% block title %}
+Administrare Persoane Juridice
+{% endblock %}
+{% block content %}
+<h1><center>Meniu</center></h1>
+{% if not persons %}
+<p>Momentan nu aveți atașată nici o persoana juridică</p>
+{% endif %}
+<table class=small>
+    <tr>
+        <th>Nume</th>
+        <th>CUI</th>
+        <th>Nr. Reg. Comerțului</th>
+        <th>Cont Bancă</th>
+        <th>Nume Bancă</th>
+        <th>Adresă facturare</th>
+        <th colspan=2>Editare</th>
+    </tr>
+{% for person in persons %}
+    <tr>
+        <td>{{person.name}}</td>
+        <td>{{person.fiscal_id}}</td>
+        <td>{{person.fiscal_reg}}</td>
+        <td>{{person.bank_account}}</td>
+        <td>{{person.bank_name}}</td>
+        <td>{{person.bill_address}}</td>
+        <td><a href={% url edit_something 'customer_firm' person.id %}>Modifică</a></td>
+        <td><a href={% url delete_something 'customer_firm' person.id %}>Șterge</a></td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan=6><a href={% url add_something 'customer_firm' %}>Adaugă Persoană Juridică</a></td>
+    <tr>
+</table>
+{% endblock %}

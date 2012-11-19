@@ -8,10 +8,10 @@ Oferte
 {% for offer in offers %}
 <div id="offer-container">
     <p class="title"> {{offer.title}}</p>
-    <div id="offer-img">
+    <div id="event-img">
         <img src="{{basepath}}{{offer.picture.photo}}" title="{{offer.title}}">
     </div>
-    <div id="offer-text">
+    <div id="event-text">
         {{ offer.text|safe }}
     </div>
 </div>

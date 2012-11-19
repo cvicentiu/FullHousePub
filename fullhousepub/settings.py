@@ -92,6 +92,7 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS +(
         "context_processors.basepath",
         "context_processors.session_order",
+        "context_processors.image_top",
 
         )
 INSTALLED_APPS = (

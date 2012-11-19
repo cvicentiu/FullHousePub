@@ -5,8 +5,8 @@ from django.core.context_processors import csrf
 from django.template import RequestContext
 from django.db.models import Q
 from fullhousepub.core.presentation.models import *
-from fullhousepub.core.userprofile.forms import UserLoginForm
 from fullhousepub.core.menu.models import *
+from fullhousepub.core.userprofile.forms import *
 
 def main_context(request):
     context = {};
@@ -26,9 +26,11 @@ def menus(request, subcat='default', start_range=0):
         start_range = 0
 
     context['subtitle'] = '' if subcat == 'default' else subcat
-    items = MenuItem.objects.filter(category__name=subcat)[start_range:start_range+10]
+    if subcat == 'default':
+        items = MenuItem.objects.all()
+    items = MenuItem.objects.filter(category__name=subcat)
     context['dict'] = {'items': items}
-    context['left_submenu'] = Category.objects.all().order_by('name')
+    context['left_submenu'] = Category.objects.all().exclude(name='default').order_by('name')
 
     return render_to_response('interface/menus.html', context,
             context_instance=RequestContext(request))
@@ -41,9 +43,7 @@ def offers(request):
 
 def events(request):
     context = main_context(request)
-    events = Event.objects.filter(Q(repeat_weekly=True) or 
-            Q(datetime.now() + datetime.timedelta(days=7) >= when >= 
-                datetime.now()))
+    events = Event.objects.all().order_by('when')
 #    for event in events:
 #        if event.when < datetime.now():
 #            event.when = event.when() + 

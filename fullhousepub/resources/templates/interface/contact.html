@@ -6,20 +6,20 @@ Contact
 {% block content %}
 <h1><center> Contact </center></h1>
 {% for contact in contacts %}
-<div id="contact-container">
+<div id="offer-container">
     <p class="title">{{contact.title}}</p></td>
     <table>
         <tr>
             <td><p class="desc">Adresă:</p></td>
-            <td><p class="txt">{{contact.address}}</p></td>
+            <td><p class="txt">{{contact.address|safe}}</p></td>
         </tr>
         <tr>
             <td><p class="desc">Telefon:</p></td>
-            <td><p class="txt">{{contact.phone}}</p></td>
+            <td><p class="txt">{{contact.phone|safe}}</p></td>
         </tr>
         <tr>
             <td><p class="desc">Program:</p></td>
-            <td><p class="txt">{{contact.hours}}</p></td>
+            <td><p class="txt">{{contact.hours|safe}}</p></td>
         </tr>
     </table>
 </div>

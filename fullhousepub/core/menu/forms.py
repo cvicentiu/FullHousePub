@@ -8,3 +8,7 @@ class CategoryForm(ModelForm):
 class ItemForm(ModelForm):
     class Meta:
         model = MenuItem
+
+class DetailForm(ModelForm):
+    class Meta:
+        model = Detail

@@ -5,10 +5,12 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import HttpResponse
 from fullhousepub.core.orders.models import *
+from fullhousepub.core.orders.forms import *
 from fullhousepub.core.menu.models import *
 from fullhousepub.core.menu.forms import *
 from fullhousepub.core.presentation.models import *
 from fullhousepub.core.presentation.forms import *
+from fullhousepub.core.userprofile.forms import UserForm
 
 
 @login_required
@@ -21,15 +23,29 @@ def homepage(request):
         context_instance=RequestContext(request))
 
 @login_required
-def view_orders(request, order_id=1):
+def view_orders(request, order_id=0):
+    next = False
+    prev = False if int(order_id) == 0 else True
     if request.user.is_staff or request.user.get_profile().is_worker:
-        orders = Order.objects.all().order_by('timestamp')
+        orders = Order.objects.all().order_by(
+                '-timestamp')[20*(int(order_id)):20*(int(order_id)+1)]
+        if Order.objects.all().order_by(
+                '-timestamp')[20*(int(order_id)+1):20*(int(order_id)+2)].count() > 0:
+            next = True
     else:
-        orders = Order.objects.filter(buyer_person__user_linked=request.user)
+        orders = Order.objects.filter(buyer_person__user_linked=request.user).order_by(
+                '-timestamp')[20*(int(order_id)):20*(int(order_id)+1)]
+        if Order.objects.filter(buyer_person__user_linked=request.user).order_by(
+                '-timestamp')[20*(int(order_id)+1):20*(int(order_id)+2)].count()> 0:
+            next = True
+
     return render_to_response('cpanel/view_orders.html',
-            {'orders' : orders},
+            {'orders' : orders,
+            'page_b' : int(order_id)-1,
+            'page_n' : int(order_id)+1,
+            'next' : next,
+            'prev' : prev},
             context_instance=RequestContext(request))
-    return HttpResponseRedirect('/')
 
 @login_required
 def view_users(request):
@@ -90,21 +106,47 @@ def get_classes(what):
         form = OrderForm
         next_view = view_orders
     if what == 'user_f':
-        model = UserProfile
+        model = User
         form = UserForm
         next_view = homepage
-
+    if what == 'customer_firm':
+        model = CustomerFirm
+        form = CustomerFirmForm
+        next_view = view_j_profile
+    if what == 'contact':
+        model = ContactInfo
+        form = ContactInfoForm
+        next_view = view_contacts
+    if what == 'detail':
+        model = Detail
+        form = DetailForm
+        next_view = view_menu
     return (model, form, next_view)
 
 @login_required
-def edit_something(request, what, id):
+def view_contacts(request):
     if request.user.is_staff or request.user.get_profile().is_worker:
+        contacts = ContactInfo.objects.all().order_by('title')
+        context = {}
+        context['contacts'] = contacts
+        return render_to_response('cpanel/view_contacts.html',
+                context,
+                context_instance=RequestContext(request))
+    return HttpResponseRedirect('/')
+
+@login_required
+def edit_something(request, what, id):
+    if request.user.is_staff or request.user.get_profile().is_worker\
+        or what == 'customer_firm' or what == 'user_f':
         model, form, next_view = get_classes(what)
         item = get_object_or_404(model, pk=id)
         if request.method == 'POST':
             item_form = form(request.POST, instance=item)
             if item_form.is_valid():
-                item_form.save()
+                if what == 'user_f' or what == 'customer_firm':
+                    item_form.save(request)
+                else:
+                    item_form.save()
                 return next_view(request)
         else:
             item_form = form(instance=item)
@@ -119,14 +161,17 @@ def edit_something(request, what, id):
 
 @login_required
 def add_something(request, what):
-    if request.user.is_staff or request.user.get_profile().is_worker:
+    if request.user.is_staff or request.user.get_profile().is_worker \
+            or what == 'customer_firm':
         model, form, next_view = get_classes(what)
         if request.method == 'POST':
             item_form = form(request.POST, request.FILES)
             if item_form.is_valid():
-                item_form.save(commit=True)
+                if what == 'customer_firm':
+                    item_form.save(request)
+                else:
+                    item_form.save(commit=True)
                 return next_view(request)
-            print request.POST
         else:
             item_form = form()
         context = {}
@@ -209,22 +254,12 @@ def detail_order(request, order_id):
             context_instance=RequestContext(request))
 
 @login_required
-def change_f_profile(request, uid=0):
-    return HttpResponse("TODO")
-
-@login_required
-def change_j_profile(request):
-    return HttpResponse("TODO")
-
-@login_required
-def change_j_profile(request, uid=0):
-    return HttpResponse("TODO")
-
-@login_required
-def change_address_profile(request, uid=0):
-    return HttpResponse("TODO")
-
-@login_required
-def change_address_profile(request):
-    return HttpResponse("TODO")
+def view_j_profile(request):
+    persons = CustomerFirm.objects.filter(user_linked=request.user, visible=True)
+    context = {}
+    context['persons'] = persons
+    return render_to_response('cpanel/view_j_persons.html',
+            context,
+            context_instance=RequestContext(request))
+    
 

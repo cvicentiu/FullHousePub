@@ -3,16 +3,16 @@
 <div id="left-command-container">
     <p class="title">Date personale</p>
     <div id="left-link">
-    <a href={% url change_f_profile %}>Persoană fizică</a>
+    <a href={% url change_password %}>Schimbă Parola</a>
     </div>
     <div id="left-link">
-    <a href={% url change_j_profile %}>Persoane juridice</a>
+    <a href={% url edit_something 'user_f' user.id %}>Persoană fizică</a>
     </div>
     <div id="left-link">
-    <a href={% url change_address_profile%}>Adresă livrare</a>
+    <a href={% url view_j_profile %}>Persoane juridice</a>
     </div>
     <div id="left-link">
-    <a href={% url view_orders%}>Istoric Comenzi</a>
+    <a href={% url view_orders 0%}>Istoric Comenzi</a>
     </div>
 </div>
 {% if user.is_staff or user.get_profile.is_worker %}
@@ -32,6 +32,9 @@
     </div>
     <div id="left-link">
     <a href={% url view_offers %}>Oferte</a>
+    </div>
+    <div id="left-link">
+    <a href={% url view_contacts %}>Contacte</a>
     </div>
 </div>
 {% endif %}

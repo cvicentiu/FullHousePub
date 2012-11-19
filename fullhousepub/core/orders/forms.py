@@ -44,7 +44,8 @@ def make_quantity_adjust_form(order_dict={}, user=None):
         fields['telephone'] = ROPhoneNumberField(label='Telefon')
         fields['email'] = forms.EmailField(label='Email', initial=user.email)
         fields['address'] = forms.CharField(label=u'Adresă',
-                            widget=forms.Textarea())
+                            widget=forms.Textarea(),
+                            initial=user.get_profile().address)
         fields['details'] = forms.CharField(label='Detalii',
                             widget=forms.Textarea())
         CHOICES = [
@@ -124,3 +125,32 @@ def make_quantity_adjust_form(order_dict={}, user=None):
     save_method = new.instancemethod(save, None, class_form)
     setattr(class_form, 'save', save_method)
     return class_form
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+
+class CustomerFirmForm(forms.ModelForm):
+    class Meta:
+        model = CustomerFirm
+        exclude = ('user_linked', 'visible')
+    def __init__(self, *args, **kwargs):
+        super(CustomerFirmForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = 'Nume'
+        self.fields['fiscal_id'].label = 'CUI'
+        self.fields['fiscal_reg'].label = 'Nr. Reg. Comerțului'
+        self.fields['bank_account'].label = 'Cont IBAN'
+        self.fields['bank_name'].label = 'Nume bancă'
+        self.fields['bill_address'].label = 'Adresă facturare'
+        self.fields['bill_address'].widget = forms.Textarea()
+        for field in self.fields:
+            self.fields[field].initial = ''
+
+    def save(self, request, commit=True):
+        user = request.user
+        firm = super(CustomerFirmForm, self).save(commit=False)
+        firm.user_linked = user
+        firm.visible = True
+        if commit:
+            firm.save()

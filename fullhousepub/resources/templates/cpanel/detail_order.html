@@ -19,8 +19,7 @@
     </tr>
     {% if user.get_profile.is_worker or user.is_staff %}
     <tr>
-        <td colspan=6><a href="{% url edit_something 'buyer_person'
-                order.buyer_person.id %}">Modifică</a></td>
+        <td colspan=6><a href="{% url edit_something 'buyer_person' order.buyer_person.id %}">Modifică</a></td>
     </tr>
         {% endif %}
 </table>

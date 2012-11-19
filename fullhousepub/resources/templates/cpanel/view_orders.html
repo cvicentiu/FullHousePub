@@ -54,6 +54,14 @@
         {% endif %}
     </tr>
     {% endfor %}
+    <tr>
+        {% if prev %}
+        <td><a href="{% url view_orders page_b %}">Înapoi</td>
+        {% endif %}
+        {% if next %}
+        <td><a href="{% url view_orders page_n %}">Înainte</td>
+        {% endif %}
+    </tr>
 </table>
 {% endblock %}
 

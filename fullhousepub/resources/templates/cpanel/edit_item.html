@@ -1,11 +1,33 @@
 {% extends 'cpanel/homepage.html' %}
+{% block preload %}
+<script type="text/javascript" src="{{basepath}}js/datepickr.js"></script>
+{% endblock %}
+{% block title %}
+CPanel
+{% endblock %}
 {% block content %}
+{% if what == 'user_f' %}
+<table class=small>
+    <tr>
+        <th>Nume:</th>
+        <th>Prenume:</th>
+        <th>Adresă livrare:</th>
+        <th>Email:</th>
+    </tr>
+    <tr>
+        <td>{{user.last_name}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.get_profile.address}}</td>
+        <td>{{user.email}}</td>
+    </tr>
+</table>
+{% endif %}
 <form action={% url edit_something what id %} method="POST"
     enctype="multipart/form-data"> 
 {% csrf_token %}
-<table>
+<table class=form>
 {{item_form}}
 </table>
-<input type="Submit" value="Modifică">
+<input type="Submit" value="Modifică" class="submit">
 </form>
 {%endblock %}
