@@ -33,10 +33,14 @@ def view_orders(request, order_id=0):
                 '-timestamp')[20*(int(order_id)+1):20*(int(order_id)+2)].count() > 0:
             next = True
     else:
-        orders = Order.objects.filter(buyer_person__user_linked=request.user).order_by(
-                '-timestamp')[20*(int(order_id)):20*(int(order_id)+1)]
-        if Order.objects.filter(buyer_person__user_linked=request.user).order_by(
-                '-timestamp')[20*(int(order_id)+1):20*(int(order_id)+2)].count()> 0:
+        buyers = CustomerPerson.objects.filter(user_linked=request.user)
+        orders = []
+        for buyer in buyers:
+            order = Order.objects.get(buyer_person=buyer)
+            orders = orders + [order]
+
+        orders = sorted(orders, key=lambda x: x.timestamp)[20*(int(order_id)):20*(int(order_id)+1)]
+        if len(orders[20*(int(order_id)+1):20*(int(order_id)+2)]) > 0:
             next = True
 
     return render_to_response('cpanel/view_orders.html',

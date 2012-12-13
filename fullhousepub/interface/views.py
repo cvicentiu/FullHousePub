@@ -28,8 +28,10 @@ def menus(request, subcat='default', start_range=0):
     context['subtitle'] = '' if subcat == 'default' else subcat
     if subcat == 'default':
         items = MenuItem.objects.all()
-    items = MenuItem.objects.filter(category__name=subcat)
-    context['dict'] = {'items': items}
+    else :
+        categorie = Category.objects.get(name=subcat)
+        items = MenuItem.objects.filter(category=categorie)
+    context['items'] = items
     context['left_submenu'] = Category.objects.all().exclude(name='default').order_by('name')
 
     return render_to_response('interface/menus.html', context,
@@ -44,10 +46,6 @@ def offers(request):
 def events(request):
     context = main_context(request)
     events = Event.objects.all().order_by('when')
-#    for event in events:
-#        if event.when < datetime.now():
-#            event.when = event.when() + 
-#                datetime.timedelta(days=(datetime.now() - event.when).days)
     context['events'] = events
     return render_to_response('interface/events.html', context,
             context_instance=RequestContext(request))

@@ -72,8 +72,7 @@
         <td>{{item.qty}}</td>
         <td>{{item.price_at_order}} Lei</td>
         {% if user.get_profile.is_worker or user.is_staff %}
-        <td><a href="{% url edit_something 'order_item' item.id
-                %}">Modifică</a></td>
+        <td><a href="{% url edit_something 'order_item' item.id %}">Modifică</a></td>
         {% endif %}
     </tr>
     {% endfor %}

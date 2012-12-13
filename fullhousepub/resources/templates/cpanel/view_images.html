@@ -13,10 +13,10 @@
     {% for gallery, pictures in pictures.iteritems %}
     <td rowspan={{pictures|length}}><h3>{{gallery}}</h3>
     <td rowspan={{pictures|length}}>
-        <a href={% url delete_something 'gallery' 1 %}>Șterge</a>
+        <a href={% url delete_something 'gallery' gallery.id %}>Șterge</a>
     </td>
     <td rowspan={{pictures|length}}>
-        <a href={% url edit_something 'gallery' 1 %}>Modifică</a>
+        <a href={% url edit_something 'gallery' gallery.id %}>Modifică</a>
     </td>
     </td>
         {% if not pictures %}

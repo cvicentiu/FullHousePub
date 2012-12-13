@@ -5,11 +5,11 @@ Meniu
 {% block content %}
 <h1> Meniu </h1>
 <h2 class="subtitle">{{subtitle}}</h2>
-{% for item in dict.items %}
+{% for item in items %}
 <div id="item-container">
         <div id="item-container-left">
-            <a href="{{basepath}}{{item.picture.photo}}" rel="lightbox">
-                <img src="{{ basepath }}{{item.picture.photo}}" title="{{ item.name }}"
+            <a href="/_ah/img/{{item.picture.photo}}" rel="lightbox">
+                <img src="/_ah/img/{{item.picture.photo}}" title="{{ item.name }}"
             width=100px height=100px>
             </a>
             <a href="{% url process_buy id=item.id %}?next={{path}}">Adaugă in coș</a>
